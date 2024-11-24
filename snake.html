@@ -1,120 +1,19 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      #gameCanvas {
-        border: 1px solid #000;
-      }
-    </style>
-  </head>
-  <body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snake Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-container">
     <canvas id="gameCanvas" width="500" height="500"></canvas>
-
-    <script>
-      // Game variables
-      const canvas = document.getElementById("gameCanvas");
-      const ctx = canvas.getContext("2d");
-      const tileSize = 20;
-      const tileCount = canvas.width / tileSize;
-      let snakeX = 10;
-      let snakeY = 10;
-      let snakeXSpeed = 0;
-      let snakeYSpeed = 0;
-      let snakeTrail = [];
-      let tailSize = 5;
-      let appleX = 15;
-      let appleY = 15;
-
-      // Handle keyboard input
-      document.addEventListener("keydown", keyDownEvent);
-
-      function keyDownEvent(event) {
-        // Change snake direction based on arrow keys
-        switch (event.keyCode) {
-          case 37:
-            // Left arrow key
-            snakeXSpeed = -1;
-            snakeYSpeed = 0;
-            break;
-          case 38:
-            // Up arrow key
-            snakeXSpeed = 0;
-            snakeYSpeed = -1;
-            break;
-          case 39:
-            // Right arrow key
-            snakeXSpeed = 1;
-            snakeYSpeed = 0;
-            break;
-          case 40:
-            // Down arrow key
-            snakeXSpeed = 0;
-            snakeYSpeed = 1;
-            break;
-        }
-      }
-
-      // Update game logic
-      function updateGame() {
-        snakeX += snakeXSpeed;
-        snakeY += snakeYSpeed;
-
-        // Wrap snake around the screen
-        if (snakeX < 0) snakeX = tileCount - 1;
-        if (snakeY < 0) snakeY = tileCount - 1;
-        if (snakeX >= tileCount) snakeX = 0;
-        if (snakeY >= tileCount) snakeY = 0;
-
-        // Check if the snake collides with itself
-        snakeTrail.forEach((segment) => {
-          if (segment.x === snakeX && segment.y === snakeY) {
-            tailSize = 5; // Reset tail size
-          }
-        });
-
-        // Add current position to the snake's trail
-        snakeTrail.push({ x: snakeX, y: snakeY });
-        while (snakeTrail.length > tailSize) {
-          snakeTrail.shift(); // Remove old trail segments
-        }
-
-        // Check if the snake collides with the apple
-        if (appleX === snakeX && appleY === snakeY) {
-          tailSize++; // Increase tail size
-          appleX = Math.floor(Math.random() * tileCount);
-          appleY = Math.floor(Math.random() * tileCount);
-        }
-
-        // Clear the canvas
-        ctx.fillStyle = "#fff";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Draw the snake
-        ctx.fillStyle = "#00f";
-        snakeTrail.forEach((segment) => {
-          ctx.fillRect(
-            segment.x * tileSize,
-            segment.y * tileSize,
-            tileSize,
-            tileSize
-          );
-        });
-
-        // Draw the apple
-        ctx.fillStyle = "#f00";
-        ctx.fillRect(
-          appleX * tileSize,
-          appleY * tileSize,
-          tileSize,
-          tileSize
-        );
-
-        // Call the update function again
-        requestAnimationFrame(updateGame);
-      }
-
-      // Start the game
-      updateGame();
-    </script>
-  </body>
+    <div class="score-box">
+      <h2>Score</h2>
+      <p id="score">0</p>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
 </html>

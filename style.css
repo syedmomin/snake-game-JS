@@ -1,0 +1,43 @@
+/* Reset and basic styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+  
+  .game-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  #gameCanvas {
+    border: 2px solid #00b20c;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .score-box {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .score-box h2 {
+    margin: 0 0 10px;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  .score-box p {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+  }
+  
