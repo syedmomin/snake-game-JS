@@ -69,10 +69,10 @@ function showGameOver() {
   ctx.fillStyle = "#fff";
   ctx.font = "30px Arial";
   ctx.textAlign = "center";
-  ctx.fillText("Game Over!", canvas.width / 2, canvas.height / 2 - 20);
+  ctx.fillText("Game Over!", canvas.width / 2, canvas.height / 2 - 40);
   ctx.font = "20px Arial";
-  ctx.fillText(`Final Score: ${score}`, canvas.width / 2, canvas.height / 2 + 20);
-  ctx.fillText("Press Enter to Restart", canvas.width / 2, canvas.height / 2 + 50);
+  ctx.fillText(`Final Score: ${score}`, canvas.width / 2, canvas.height / 2);
+  ctx.fillText("Press Enter to Continue", canvas.width / 2, canvas.height / 2 + 40);
 
   // Restart game on "Enter" key
   document.addEventListener("keydown", restartGame);
@@ -124,13 +124,14 @@ function updateGame() {
   snakeY += snakeYSpeed;
 
   // Check for border collision
-  if (snakeX < 0 || snakeY < 0 || snakeX >= tileCount || snakeY >= tileCount) {
-    gameOver = true; // End the game
-    return;
-  }
+ 
 
   // Check if the snake collides with itself
   snakeTrail.forEach((segment) => {
+    if (snakeX < 0 || snakeY < 0 || snakeX >= tileCount || snakeY >= tileCount) {
+        gameOver = true; // End the game
+        return;
+      }
     if (segment.x === snakeX && segment.y === snakeY) {
       gameOver = true; // End the game
       return;
@@ -177,7 +178,7 @@ function updateGame() {
   );
 
   // Call the update function again with a delay for slower speed
-  setTimeout(() => requestAnimationFrame(updateGame), 100);
+  setTimeout(() => requestAnimationFrame(updateGame), 50);
 }
 
 // Start the game with the initial screen
