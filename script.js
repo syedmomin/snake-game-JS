@@ -123,9 +123,6 @@ function updateGame() {
   snakeX += snakeXSpeed;
   snakeY += snakeYSpeed;
 
-  // Check for border collision
- 
-
   // Check if the snake collides with itself
   snakeTrail.forEach((segment) => {
     if (snakeX < 0 || snakeY < 0 || snakeX >= tileCount || snakeY >= tileCount) {
