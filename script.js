@@ -175,7 +175,7 @@ function updateGame() {
   );
 
   // Call the update function again with a delay for slower speed
-  setTimeout(() => requestAnimationFrame(updateGame), 50);
+  setTimeout(() => requestAnimationFrame(updateGame), 30);
 }
 
 // Start the game with the initial screen
